@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ImagePopup({card, onClose}) {
-  console.log(card, Boolean(card), Boolean(Object.keys(card)))
+  // console.log(card, Boolean(card), Boolean(Object.keys(card)))
   return (
     <div className={`popup popup_terget_add-photo ${(Object.keys(card).length) ? 'popup_opened' : ''}`}>
       <div className='popup__conteiner popup__conteiner_type_photo'>
