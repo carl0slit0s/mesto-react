@@ -17,7 +17,7 @@ function App() {
   let [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   let [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   let [isAcceptDeletePopupOpen, setIsAcceptDeletePopupOpen] = useState(false)
-  let [selectedCard, setSelectedCard] = useState(false);
+  let [selectedCard, setSelectedCard] = useState({});
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
@@ -40,7 +40,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAcceptDeletePopupOpen(false)
-    setSelectedCard(false);
+    setSelectedCard({});
   };
 
   const handleCardClick = (card) => {
@@ -97,18 +97,6 @@ function App() {
       />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-      {/* <div className='popup popup_target_delete-accept'>
-        <div className='popup__conteiner'>
-          <form action='#' name='add-card' className='form'>
-            <h2 className='form__title'>Вы уверены?</h2>
-            <button className='form__submit' type='submit'>
-              Да
-            </button>
-          </form>
-
-          <button type='button' className='popup__close-icon'></button>
-        </div>
-      </div> */}
     </div>
   );
 }

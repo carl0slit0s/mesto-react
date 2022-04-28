@@ -9,7 +9,7 @@ export default function Main({
   onCardClick,
   onDeleteClick,
 }) {
-  let [userAvatar, setUserAvatar] = useState('#');
+  let [userAvatar, setUserAvatar] = useState('');
   let [userName, setUserName] = useState('');
   let [userDescription, setUserDescription] = useState('');
   let [cards, setCards] = useState([]);
@@ -20,7 +20,7 @@ export default function Main({
       setUserName(profile.name);
       setUserDescription(profile.about);
     }).catch((err) => console.log(err));;
-  });
+  }, []);
 
   useEffect(() => {
     api
