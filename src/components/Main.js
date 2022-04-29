@@ -9,10 +9,10 @@ export default function Main({
   onCardClick,
   onDeleteClick,
 }) {
-  let [userAvatar, setUserAvatar] = useState('');
-  let [userName, setUserName] = useState('');
-  let [userDescription, setUserDescription] = useState('');
-  let [cards, setCards] = useState([]);
+  const [userAvatar, setUserAvatar] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api.getProfileData().then((profile) => {

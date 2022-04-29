@@ -13,11 +13,11 @@ import ChildrenPopupChangeAvatar from './ChildrenPopupChangeAvatar';
 
 import React, { useState } from 'react';
 function App() {
-  let [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  let [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  let [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  let [isAcceptDeletePopupOpen, setIsAcceptDeletePopupOpen] = useState(false)
-  let [selectedCard, setSelectedCard] = useState({});
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isAcceptDeletePopupOpen, setIsAcceptDeletePopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
