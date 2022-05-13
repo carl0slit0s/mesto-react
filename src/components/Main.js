@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../utils/Api';
 import Card from './Card.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Main({
   onEditProfile,
@@ -8,36 +9,15 @@ export default function Main({
   onEditAvatar,
   onCardClick,
   onDeleteClick,
+  cards,
+  onCardLike,
+  onCardDelete
 }) {
-  const [userAvatar, setUserAvatar] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [cards, setCards] = useState([]);
+  
+  const currentUser = React.useContext(CurrentUserContext);
 
-  useEffect(() => {
-    api.getProfileData().then((profile) => {
-      setUserAvatar(profile.avatar);
-      setUserName(profile.name);
-      setUserDescription(profile.about);
-    }).catch((err) => console.log(err));;
-  }, []);
 
-  useEffect(() => {
-    api
-      .getCards()
-      .then((cardList) => {
-        const formatedData = cardList.map((cardData) => ({
-          name: cardData.name,
-          link: cardData.link,
-          likes: cardData.likes,
-          _id: cardData._id,
-          // ownerId: cardData.owner._id,
-          // profileId: profileId,
-        }));
-        setCards(formatedData);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+
 
   return (
     <main>
@@ -45,15 +25,15 @@ export default function Main({
         <div className='profile__overlay'>
           <img
             onClick={onEditAvatar}
-            src={userAvatar}
+            src={currentUser.avatar}
             alt='аватар автора'
             className='profile__avatar'
           />
         </div>
 
         <div className='profile__info'>
-          <h1 className='profile__name'>{userName}</h1>
-          <p className='profile__about'>{userDescription}</p>
+          <h1 className='profile__name'>{currentUser.name}</h1>
+          <p className='profile__about'>{currentUser.about}</p>
           <button
             onClick={onEditProfile}
             type='button'
@@ -74,7 +54,9 @@ export default function Main({
             onCardClick={onCardClick}
             card={card}
             key={card._id}
-            onDeleteClick={onDeleteClick}
+            onDeleteClick={onCardDelete}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
           />
         ))}
       </section>

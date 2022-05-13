@@ -6,17 +6,16 @@ export default function PopupWithForm({
   children,
   isOpen,
   onClose,
+  onSubmit
 }) {
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+
   return (
     <div
       className={`popup popup_terget_${name} ${isOpen ? 'popup_opened' : ''}`}
     >
       <div className='popup__conteiner'>
-        <form onSubmit={handleSubmit} action='#' name={name} className='form'>
+        <form onSubmit={onSubmit} action='#' name={name} className='form'>
           <h2 className='form__title'>{title}</h2>
           {children}
         </form>

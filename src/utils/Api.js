@@ -5,13 +5,35 @@ class Api {
   }
 
   getProfileData() {
-    return fetch(`${this.server}/users/me`, this.options)
-      .then(this._checkResponse)
+    return fetch(`${this.server}/users/me`, this.options).then(
+      this._checkResponse
+    );
   }
 
   getCards() {
-    return fetch(`${this.server}/cards`, this.options)
-      .then(this._checkResponse)
+    return fetch(`${this.server}/cards`, this.options).then(
+      this._checkResponse
+    );
+  }
+
+  changeLikeCardStatus(id, isLiked) {
+    if (isLiked) {
+      return fetch(`${this.server}/cards/${id}/likes`, {
+        method: 'DELETE',
+        headers: {
+          authorization: 'b14b5010-4fa1-4827-8329-0c3d4de2a70b',
+          'Content-Type': 'application/json',
+        },
+      }).then(this._checkResponse);
+    } else {
+      return fetch(`${this.server}/cards/${id}/likes`, {
+        method: 'PUT',
+        headers: {
+          authorization: 'b14b5010-4fa1-4827-8329-0c3d4de2a70b',
+          'Content-Type': 'application/json',
+        },
+      }).then(this._checkResponse);
+    }
   }
 
   editProfile(data) {
@@ -25,8 +47,7 @@ class Api {
         name: data.name,
         about: data.about,
       }),
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   addCard(name, link) {
@@ -40,8 +61,7 @@ class Api {
         name,
         link,
       }),
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   deleteCard(id) {
@@ -51,8 +71,7 @@ class Api {
         authorization: 'b14b5010-4fa1-4827-8329-0c3d4de2a70b',
         'Content-Type': 'application/json',
       },
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   addLike(id) {
@@ -62,8 +81,7 @@ class Api {
         authorization: 'b14b5010-4fa1-4827-8329-0c3d4de2a70b',
         'Content-Type': 'application/json',
       },
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   deleteLike(id) {
@@ -73,8 +91,7 @@ class Api {
         authorization: 'b14b5010-4fa1-4827-8329-0c3d4de2a70b',
         'Content-Type': 'application/json',
       },
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
 
   changeAvatar(avatar) {
@@ -85,20 +102,19 @@ class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        avatar: avatar
-      })
-    })
-      .then(this._checkResponse);
+        avatar: avatar,
+      }),
+    }).then(this._checkResponse);
   }
 
   _checkResponse(res) {
     if (res.ok) {
-      return res.json()
+      return res.json();
     }
-    return Promise.reject(`Ошибка ${res.status}`)
+    return Promise.reject(`Ошибка ${res.status}`);
   }
   rebderError(err) {
-    console.log(`Ошибка: ${err}`)
+    console.log(`Ошибка: ${err}`);
   }
 }
 
