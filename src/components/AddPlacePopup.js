@@ -6,9 +6,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const cardnameRef = React.useRef();
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(cardnameRef.current.value, cardLinkRef.current.value)
     onAddPlace(cardnameRef.current.value, cardLinkRef.current.value)
-    // onAddPlace;
   }
 
   return (
@@ -16,7 +14,6 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       title={'Новое место'}
       name={'add-photo'}
       isOpen={isOpen}
-      // children={<ChildrenPopupAddPhoto />}
       onClose={onClose}
       onSubmit={handleSubmit}
     >

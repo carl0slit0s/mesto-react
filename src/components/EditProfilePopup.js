@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
-import ChildrenPopupEditProfile from './ChildrenPopupEditProfile';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
@@ -8,7 +7,7 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about)
   }, [currentUser]);
@@ -34,7 +33,6 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       title={'Редактировать профиль'}
       name={'redactor-profile'}
       isOpen={isOpen}
-      // children={<ChildrenPopupEditProfile />}
       onClose={onClose}
       onSubmit={handleSubmit}
       

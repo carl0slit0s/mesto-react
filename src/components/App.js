@@ -1,4 +1,4 @@
-// import './App.css';
+
 import '../index.css';
 import './Header';
 import Header from './Header';
@@ -11,10 +11,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-
-import ChildrenPopupEditProfile from './ChildrenPopupEditProfile';
-import ChildrenPopupAddPhoto from './ChildrenPopupAddPhoto';
-import ChildrenPopupChangeAvatar from './ChildrenPopupChangeAvatar';
 
 import React, { useEffect, useState } from 'react';
 function App() {
@@ -30,7 +26,6 @@ function App() {
     api
       .getProfileData()
       .then((profile) => {
-        console.log(profile);
         setCurrentUser(profile);
       })
       .catch((err) => console.log(err));
@@ -46,7 +41,6 @@ function App() {
           likes: cardData.likes,
           _id: cardData._id,
           ownerId: cardData.owner._id,
-          // profileId: profileId,
         }));
         setCards(formatedData);
       })
@@ -76,7 +70,6 @@ function App() {
   }
 
   const handleUpdateUser = (userData) => {
-    console.log(userData);
     api
       .editProfile(userData)
       .then((data) =>
@@ -150,35 +143,15 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        {/* 
-        <PopupWithForm
-          title={'Редактировать профиль'}
-          name={'redactor-profile'}
-          isOpen={isEditProfilePopupOpen}
-          children={<ChildrenPopupEditProfile />}
-          onClose={closeAllPopups}
-        /> */}
 
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
-        {/* <PopupWithForm
-          title={'Новое место'}
-          name={'add-photo'}
-          isOpen={isAddPlacePopupOpen}
-          children={<ChildrenPopupAddPhoto />}
-          onClose={closeAllPopups}
-        /> */}
+
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        {/* <PopupWithForm
-          title={'Обновить аватар'}
-          name={'change-avatar'}
-          isOpen={isEditAvatarPopupOpen}
-          children={<ChildrenPopupChangeAvatar />}
-          onClose={closeAllPopups}
-        /> */}
+
         <PopupWithForm
           title={'Вы уверенны?'}
           name={'delete-accept'}

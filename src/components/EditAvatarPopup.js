@@ -13,7 +13,6 @@ export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       title={'Обновить аватар'}
       name={'change-avatar'}
       isOpen={isOpen}
-      // children={<ChildrenPopupChangeAvatar />}
       onClose={onClose}
       onSubmit={handleSubmit}
     >
