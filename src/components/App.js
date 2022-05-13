@@ -1,4 +1,3 @@
-
 import '../index.css';
 import './Header';
 import Header from './Header';
@@ -75,22 +74,25 @@ function App() {
       .then((data) =>
         setCurrentUser({ ...currentUser, name: data.name, about: data.about })
       )
+      .then(() => closeAllPopups())
       .catch((err) => console.log(err));
-    closeAllPopups();
   };
 
   const handleUpdateAvatar = (avatar) => {
     api
       .changeAvatar(avatar)
       .then((data) => setCurrentUser({ ...currentUser, avatar: data.avatar }))
+      .then(() => closeAllPopups())
       .catch((err) => console.log(err));
-    closeAllPopups();
   };
 
   const handleAddPlaceSubmit = (name, link) => {
-    api.addCard(name, link).then((newCard) => setCards([newCard, ...cards])).catch(err => console.log(err))
-    closeAllPopups()
-  }
+    api
+      .addCard(name, link)
+      .then((newCard) => setCards([newCard, ...cards]))
+      .then(() => closeAllPopups())
+      .catch((err) => console.log(err));
+  };
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
@@ -144,7 +146,11 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

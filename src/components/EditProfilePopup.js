@@ -10,7 +10,7 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about)
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleChacgeName(e) {
     setName(e.target.value);
@@ -35,7 +35,7 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      
+      buttonText={'Сохранить'}
     >
       <label className='form__field'>
         <input
@@ -46,7 +46,7 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
           className='form__input form__input_field_name'
           placeholder='введите имя'
           required
-          defaultValue={name}
+          value={name || ''}
           // minlength={2}
           // maxlength={40}
         />
@@ -62,16 +62,12 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
           className='form__input form__input_field_about'
           placeholder='о себе'
           required
-          defaultValue={description}
+          value={description || ''}
           // minlength={2}
           // maxlength={200}
         />
         <span className='form__input-error about-error'></span>
       </label>
-
-      <button className='form__submit' type='submit'>
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

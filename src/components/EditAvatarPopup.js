@@ -15,6 +15,7 @@ export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={'Сохранить'}
     >
       <label className='form__field'>
         <input
@@ -28,10 +29,6 @@ export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
         />
         <span className='form__input-error avatar-error'></span>
       </label>
-
-      <button className='form__submit' type='submit'>
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

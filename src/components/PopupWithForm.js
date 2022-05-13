@@ -6,10 +6,9 @@ export default function PopupWithForm({
   children,
   isOpen,
   onClose,
-  onSubmit
+  onSubmit,
+  buttonText
 }) {
-
-
   return (
     <div
       className={`popup popup_terget_${name} ${isOpen ? 'popup_opened' : ''}`}
@@ -18,6 +17,9 @@ export default function PopupWithForm({
         <form onSubmit={onSubmit} action='#' name={name} className='form'>
           <h2 className='form__title'>{title}</h2>
           {children}
+          <button className='form__submit' type='submit'>
+            {buttonText}
+          </button>
         </form>
 
         <button
@@ -26,6 +28,9 @@ export default function PopupWithForm({
           className='popup__close-icon'
         ></button>
       </div>
+      <button className='form__submit' type='submit'>
+        {buttonText}
+      </button>
     </div>
   );
 }

@@ -2,12 +2,21 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const cardLinkRef = React.useRef();
-  const cardnameRef = React.useRef();
+  const [cardLink, setCardLink] = React.useState('')
+  const [cardName, setCardName] = React.useState('')
+
   function handleSubmit(e) {
     e.preventDefault();
-    onAddPlace(cardnameRef.current.value, cardLinkRef.current.value)
+    onAddPlace(cardName, cardLink)
   }
+
+  function handleChangeName(e) {
+    setCardName(e.target.value)
+  }
+  function handleChangeLink(e) {
+    setCardLink(e.target.value)
+  }
+
 
   return (
     <PopupWithForm
@@ -16,10 +25,11 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={'Сохранить'}
     >
       <label className='form__field'>
         <input
-          ref={cardnameRef}
+          onChange={handleChangeName}
           type='text'
           name='place-name'
           id='place-name'
@@ -34,7 +44,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
       <label className='form__field'>
         <input
-          ref={cardLinkRef}
+          onChange={handleChangeLink}
           type='url'
           name='photo-link'
           id='photo-link'
@@ -45,9 +55,6 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         <span className='form__input-error photo-link-error'></span>
       </label>
 
-      <button className='form__submit' type='submit'>
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }
