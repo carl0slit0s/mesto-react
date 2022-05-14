@@ -5,6 +5,10 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const [cardLink, setCardLink] = React.useState('')
   const [cardName, setCardName] = React.useState('')
 
+  React.useEffect(() => {
+    setCardLink('')
+    setCardName('')
+  }, [isOpen])
   function handleSubmit(e) {
     e.preventDefault();
     onAddPlace(cardName, cardLink)
@@ -36,6 +40,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           className='form__input form__input_card_name'
           placeholder='Название'
           required
+          value={cardName}
           // minlength={2}
           // maxlength={30}
         />
@@ -51,6 +56,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           className='form__input form__input_card_link'
           placeholder='Ссылка на картинку'
           required
+          value={cardLink}
         />
         <span className='form__input-error photo-link-error'></span>
       </label>

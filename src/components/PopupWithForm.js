@@ -28,9 +28,6 @@ export default function PopupWithForm({
           className='popup__close-icon'
         ></button>
       </div>
-      <button className='form__submit' type='submit'>
-        {buttonText}
-      </button>
     </div>
   );
 }
