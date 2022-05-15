@@ -51,7 +51,14 @@ function App() {
 
     api
       .changeLikeCardStatus(card._id, isLiked)
-      .then((newCard) => {
+      .then((cardData) => {
+        const newCard = {
+          name: cardData.name,
+          link: cardData.link,
+          likes: cardData.likes,
+          _id: cardData._id,
+          ownerId: cardData.owner._id,
+        }
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
@@ -89,7 +96,16 @@ function App() {
   const handleAddPlaceSubmit = (name, link) => {
     api
       .addCard(name, link)
-      .then((newCard) => setCards([newCard, ...cards]))
+      .then((cardData) => {
+        const newCard = {
+          name: cardData.name,
+          link: cardData.link,
+          likes: cardData.likes,
+          _id: cardData._id,
+          ownerId: cardData.owner._id,
+        }
+      setCards([newCard, ...cards]);
+      })
       .then(() => closeAllPopups())
       .catch((err) => console.log(err));
   };
